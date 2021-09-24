@@ -1,5 +1,23 @@
 #!/bin/sh
 
+############# Installation Folder Location ##########################
+# /usr/local/share/guacamole-client = jar for the database connector
+# /usr/local/etc/guacamole-client = GUACAMOLE_HOME folder
+# /usr/local/etc/guacamole-server = Guacamole configuration server
+# /usr/local/apache-tomcat-9.0/logs = Log folder
+# tree /usr/local/share/guacamole-client
+#.
+#|-- extensions
+#|   `-- guacamole-auth-jdbc-mysql-1.3.0.jar
+#|-- guacamole.properties
+#|-- guacamole.properties.sample
+#|-- lib
+#|   `-- mysql-connector-java.jar
+#|-- logback.xml
+#|-- logback.xml.sample
+#`-- user-mapping.xml.sample
+#####################################################################
+
 #generate random password for root and guacamole db user
 mysqlroot=$(openssl rand -base64 15)
 guacamole_password=$(openssl rand -base64 15)
@@ -52,6 +70,7 @@ service tomcat9 restart
 
 echo "
 The default user for the Admin Portal is "guacadmin" with password "guacadmin"
+Admin Portal: http://{IP_ Address}}:8085
 MySQL Username: root
 MySQL Password: "$mysqlroot"
 Guacamole DB User: guacamole_user
